@@ -1,0 +1,402 @@
+﻿
+@model EscanorHomeWork.Models.ViewHome
+<!-- =========    FEATURES START    ======== -->
+<section class="features">
+    <div class="container">
+        <div class="row">
+
+            <div class="feat-container">
+                @foreach (var item in Model.Features)
+    {
+            <div class="col-md-4 feature-box">
+                <span class="icon icon-@item.Icon"></span>
+                <h3>@item.Name</h3>
+                <p>@item.Desc</p>
+            </div>
+}
+
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- =========    FEATURES END    ======== -->
+<!-- =========    ABOUT START    ======== -->
+<section class="sections about" id="about" data-scroll-index="1">
+    <div class="container">
+        <div class="row">
+
+            <div class="about-con col-md-9">
+                <h4>@Model.About.PreTitle</h4>
+                <h3>@Html.Raw(Model.About.Title)</h3>
+                <p>@Model.About.Text</p>
+                <!-- SIGNATURE -->
+                <div class="signature">
+                    <img src="~/Public/img/@Model.About.Signature" alt="signature" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- =========    ABOUT END    ======== -->
+<!-- =========    SERVICES START    ======== -->
+<section class="sections services" id="services" data-scroll-index="2">
+    <div class="container">
+        <div class="row">
+
+            <div class="title">
+                <h3>Our Services</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+            </div>
+            @foreach (var item in Model.Services)
+            {
+                <!-- Services items -->
+                <div class="col-md-4">
+                    <div class="item">
+                        <!-- HOVER EFFECT -->
+                        <div class="moving-border"><div></div></div>
+                        <!-- SERVICE ICON -->
+                        <span class="icon icon-@item.Icon"></span>
+                        <!-- SERVICE TITLE -->
+                        <h5>@item.Name</h5>
+                        <!-- SERVICES CONTENT -->
+                        <p>@item.Desc</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- =========    SERVICES END    ======== -->
+<!-- =========    EXPERIENCES START    ======== -->
+<section class="experiences">
+    <div class="container">
+        <div class="row">
+
+            <!-- EXPERIENCES CONTENT START -->
+            <div class="exper-con sections col-md-7">
+
+                <h5>Why You Can Choose Us ?</h5>
+                <h4>Building flexible, design-driven websites with Escanor.</h4>
+                <p>Lorem Ipsum is simply dummy text of the when an unknown printer took printing and type setting industry It has survived not only five centuries.</p>
+                <!-- SKILLS START -->
+                <div class="skills">
+                    @foreach (var item in Model.Skills)
+        {
+            <div class="single_progress_bar col-md-12">
+                <h2>@item.Name @item.Value%</h2>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="@item.Value" aria-valuemin="0" aria-valuemax="100" style="width: @item.Value%">
+                        <span class="sr-only">@item.Value% Complete</span>
+                    </div>
+                </div>
+            </div>
+}
+                </div>
+                <!-- SKILLS END -->
+
+            </div>
+            <!-- EXPERIENCES CONTENT END -->
+
+        </div>
+    </div>
+</section>
+<!-- =========    EXPERIENCES END    ======== -->
+<!-- =========    WORK START    ======== -->
+<section class="sections work" id="work" data-scroll-index="3">
+    <div class="container">
+        <div class="row">
+            <div class="title">
+                <h3>Latest Works</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+            </div>
+            <!-- WORK FILTER BUTTONS -->
+            <div class="button-group filter-work">
+                <a class="button is-checked" data-filter="*">All</a>
+                @foreach (var category in Model.Categories)
+        {
+            <a class="button " data-filter=".item-@category.Name.ToLower().Replace(" ","_")">@category.Name</a>
+}
+            </div>
+            <!-- END WORK FILTER BUTTONS -->
+            <!-- WORK CONTENT START -->
+            <div class="work-content">
+                @foreach (var project in Model.Projects)
+    {
+            <!-- WORK ITEM -->
+            <div class="work-item item-@project.Category.Name.ToLower().Replace(" ","_" )">
+                <div class="work-caption">
+                    <a class="modal-image" href="#modal-image-@project.Id">
+
+                        <!-- WORK IMAGE -->
+                        <img src="~/Public/img/portfolio/@project.Photo" alt="Image Title" />
+                        <!-- WORK TITLE -->
+                        <div class="overlay">
+                            <div class="info-content">
+                                <h4>@project.Name</h4>
+                            </div>
+                        </div>
+                        <!-- POPUP WHITE BOX -->
+                        <div id="modal-image-@project.Id" class="white-popup mfp-hide">
+                            <!-- POPUP WHITE BOX IMAGE -->
+                            <img src="~/Public/img/portfolio/@project.Photo" alt="Image Title" />
+                            <div>
+                                <!-- POPUP WHITE BOX TITLE -->
+                                <h3>@project.Name</h3>
+                                <!-- POPUP WHITE BOX DESCRIPTION -->
+                                <p>@project.Desc</p>
+                            </div>
+                        </div>
+                        <!-- END POPUP WHITE BOX -->
+                    </a>
+                </div>
+            </div>
+}
+            </div>
+            <!-- WORK CONTENT END -->
+        </div>
+    </div>
+</section>
+<!-- =========    WORK END    ======== -->
+<!-- =========    FACTS START    ======== -->
+<section class="sections facts">
+    <div class="container">
+        <div class="row">
+            @foreach (var stat in Model.Stats)
+    {
+        <!-- Fun Facts item -->
+        <div class="fact-item col-md-3 col-sm-6">
+            <div class="counting-icon">
+                <!-- Icon -->
+                <span class="icon icon-@stat.Icon"></span>
+            </div>
+            <!-- Number -->
+            <span class="count" data-from="0" data-to="@stat.Value">@stat.Value</span>
+            <!-- Title -->
+            <h4>@stat.Name</h4>
+        </div>
+}
+
+         
+        </div>
+    </div>
+</section>
+<!-- =========    FACTS END    ======== -->
+@* Duzgun iwlemir hamisina elave edir *@
+<!-- =========    PRICE START    ======== -->
+<section class="sections price" id="price" data-scroll-index="4">
+    <div class="container">
+        <div class="row">
+            <div class="title">
+                <h3>Our Pricing</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+            </div>
+
+            <!-- PRICING CONTENT START -->
+            <div class="price-c">
+                @foreach (var package in Model.Packages)
+                {
+            <!-- PRICE TABLE START -->
+            <div class="price-table col-md-4">
+                <div class="item text-center">
+                    <div class="type">
+                        <h5>@package.Name</h5>
+                    </div>
+                    <div class="mount">
+                        <h3><span>$</span>@package.Price.ToString("#")</h3>
+                    </div>
+                    
+                    @foreach (var packageinfo in Model.Packageinfos)
+                    {
+                    <div class="features">
+                        @if (packageinfo.Title != null)
+    {
+        if (package.Id == packageinfo.Id)
+        {
+                    <p>@packageinfo.Title.Split(',')[0]</p>
+                    <p>@packageinfo.Title.Split(',')[1]</p>
+                    <p>@packageinfo.Title.Split(',')[2]</p>
+                    <p>@packageinfo.Title.Split(',')[3]</p>
+if (packageinfo.OrderBy == 2)
+{
+                    <div class="order">
+                        <a href="#" style="background-color:#3BAFDA">
+                            Purchase Now
+                        </a>
+                    </div>
+}
+else
+{
+                    <div class="order">
+                        <a href="#" >
+                            Purchase Now
+                        </a>
+                    </div>
+}
+
+}
+}
+                    </div>
+                    }
+                 
+                </div>
+            </div>
+            <!-- PRICE TABLE END -->
+                }
+            </div>
+            <!-- PRICING CONTENT END -->
+
+        </div>
+    </div>
+</section>
+<!-- =========    PRICE END    ======== -->
+<!-- ====== TESTIMONIALS START ======  -->
+<section class="testimonials text-center">
+    <div class="testimonials-overlay sections">
+        <div class="container">
+            <div class="row">
+                <div class="title">
+                    <h3>Client Testimonials</h3>
+                    <div class="devider"></div>
+                </div>
+                <div class="owl-carousel owl-theme">
+                    @foreach (var feedback in Model.Feedbacks)
+    {
+
+                <!-- TESTIMONIALS ITEM -->
+                <div class="t-item">
+                    <div class="testimonial-box col-md-8 col-xs-10">
+                        <p>@feedback.Desc</p>
+                        <!-- TESTIMONIAL NAME -->
+                        <h3>@feedback.Holder @Html.Raw(feedback.Position)</h3>
+                    </div>
+                </div>
+}
+                </div>
+                </div>
+        </div>
+    </div>
+</section>
+<!-- =========    TESTIMONIALS END    ======== -->
+<!-- =========    BLOG START    ======== -->
+<section class="sections blog" id="blog" data-scroll-index="5">
+    <div class="container">
+        <div class="row">
+            <div class="title">
+                <h3>Our Recent Posts</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+            </div>
+
+            
+            @foreach (var post in Model.Posts)
+    {
+        <!-- START BLOG POST -->
+        <div class="col-md-4 blog-box">
+            <div class="blog-item">
+                <!-- BLOG IMAGE -->
+                <div class="feature-box-img" style="background-image: url('../Public/img/blog-@post.Photo');">
+                    <div class="blog-overlay"></div>
+                </div>
+                <!-- CATEGORY AND TIME OF THE POST -->
+                <ul class="info">
+                    <li class="category">
+                        <a href="#0">
+                            <i class="fa fa-tags"></i>
+                            <span>@post.Tags</span>
+                        </a>
+                    </li>
+                    <li class="time">
+                        <a href="#0">
+                            <i class="fa fa-calendar-o"></i>
+                            <span>@post.Date.Value.ToString("dd.MM.yyyy")</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- POST TITLTE -->
+                <a href="#0">
+                    <h4>@post.Title</h4>
+                </a>
+                <!-- POST CONTENT-->
+                <p> @post.Text</p>
+
+                <!-- POST LINK -->
+                <div class="post-link">
+                    <a href="#0">
+                        Read More
+                        <i class="fa fa-angle-double-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- END BLOG POST -->
+}
+
+        </div>
+    </div>
+</section>
+<!-- =========    BLOG START    ======== -->
+<!-- =========    CONTACT START    ======== -->
+<section class="sections contact" id="contact" data-scroll-index="6">
+    <div class="container">
+        <div class="row">
+
+            <div class="title">
+                <h3>Get in Touch</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
+            </div>
+
+            <!-- CONTACT INFO START  -->
+            <div class="contact-info col-md-12">
+
+                <div class="item col-md-4">
+                    <span class="icon icon-map-pin"></span>
+                    <h5>@ViewBag.Setting.Address</h5>
+                </div>
+                <div class="item col-md-4">
+                    <span class="icon icon-mobile"></span>
+                  
+                    <h5>@ViewBag.Setting.Phone</h5>
+                </div>
+                <div class="item col-md-4">
+                    <span class="icon icon-envelope"></span>
+                    <h5>@ViewBag.Setting.Email</h5>
+                   
+                </div>
+
+            </div>
+            <!-- CONTACT INFO END  -->
+            <!-- CONTACT FORM START -->
+            <div class="col-md-12 contact-form">
+                <form action="http://joker-themes.com/escanordemo/demos/default-version/php/contact.php" method="POST" class="cont-fo">
+
+                    <div class="contact-item col-md-6">
+                        <input type="text" name="name" placeholder="Name *" required="required">
+                    </div>
+                    <div class="contact-item col-md-6">
+                        <input type="email" name="email" placeholder="Email *" required="required">
+                    </div>
+                    <div class="contact-item col-md-6">
+                        <input type="text" name="phone" placeholder="Phone">
+                    </div>
+                    <div class="contact-item col-md-6">
+                        <input type="text" name="website" placeholder="Website">
+                    </div>
+                    <div class="contact-item col-md-12">
+                        <textarea id="form_message" name="message" placeholder="Message *" rows="4" required="required" data-error="Message."></textarea>
+                    </div>
+                    <div class="contact-item col-md-12">
+                        <input type="submit" class="button disabled" value="Send Message">
+                    </div>
+
+                </form>
+            </div>
+            <!-- CONTACT FORM END -->
+
+        </div>
+    </div>
+</section>
+<!-- =========    CONTACT END    ======== -->
+<!-- =========    GOOGLE MAP START    ======== -->
+<div id="map"></div>
+<!-- =========    GOOGLE MAP END    ======== -->
